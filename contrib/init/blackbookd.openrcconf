@@ -1,0 +1,26 @@
+# /etc/conf.d/blackbookd: config file for /etc/init.d/blackbookd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/blackbook/blackbook.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/blackbookd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/blackbookd.pid"
+
+# Where to write blackbookd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/blackbookd"
+
+# User and group to own blackbookd process
+#BITCOIND_USER="blackbook"
+#BITCOIND_GROUP="blackbook"
+
+# Path to blackbookd executable
+#BITCOIND_BIN="/usr/bin/blackbookd"
+
+# Nice value to run blackbookd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

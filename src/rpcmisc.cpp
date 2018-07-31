@@ -1,7 +1,8 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The Blackbook developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -56,8 +57,8 @@ Value getinfo(const Array& params, bool fHelp)
             "  \"version\": xxxxx,           (numeric) the server version\n"
             "  \"protocolversion\": xxxxx,   (numeric) the protocol version\n"
             "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total pivx balance of the wallet\n"
-            "  \"obfuscation_balance\": xxxxxx, (numeric) the anonymized pivx balance of the wallet\n"
+            "  \"balance\": xxxxxxx,         (numeric) the total blackbook balance of the wallet\n"
+            "  \"Darksend_balance\": xxxxxx, (numeric) the anonymized blackbook balance of the wallet\n"
             "  \"blocks\": xxxxxx,           (numeric) the current number of blocks processed in the server\n"
             "  \"timeoffset\": xxxxx,        (numeric) the time offset\n"
             "  \"connections\": xxxxx,       (numeric) the number of connections\n"
@@ -67,8 +68,8 @@ Value getinfo(const Array& params, bool fHelp)
             "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
             "  \"unlocked_until\": ttt,      (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
-            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee set in pivx/kb\n"
-            "  \"relayfee\": x.xxxx,         (numeric) minimum relay fee for non-free transactions in pivx/kb\n"
+            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee set in blackbook/kb\n"
+            "  \"relayfee\": x.xxxx,         (numeric) minimum relay fee for non-free transactions in blackbook/kb\n"
             "  \"staking status\": true|false,  (boolean) if the wallet is staking or not\n"
             "  \"errors\": \"...\"           (string) any error messages\n"
             "}\n"
@@ -85,8 +86,6 @@ Value getinfo(const Array& params, bool fHelp)
     if (pwalletMain) {
         obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
         obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetBalance())));
-        if (!fLiteMode)
-            obj.push_back(Pair("obfuscation_balance", ValueFromAmount(pwalletMain->GetAnonymizedBalance())));
     }
 #endif
     obj.push_back(Pair("blocks", (int)chainActive.Height()));
@@ -117,43 +116,12 @@ Value getinfo(const Array& params, bool fHelp)
 
 Value mnsync(const Array& params, bool fHelp)
 {
-    std::string strMode;
-    if (params.size() == 1)
-        strMode = params[0].get_str();
-
-    if (fHelp || params.size() != 1 || (strMode != "status" && strMode != "reset")) {
+    if (fHelp || params.size() != 1)
         throw runtime_error(
-            "mnsync \"status|reset\"\n"
-            "\nReturns the sync status or resets sync.\n"
+            "mnsync [status|reset]\n"
+            "Returns the sync status or resets sync.\n");
 
-            "\nArguments:\n"
-            "1. \"mode\"    (string, required) either 'status' or 'reset'\n"
-
-            "\nResult ('status' mode):\n"
-            "{\n"
-            "  \"IsBlockchainSynced\": true|false,    (boolean) 'true' if blockchain is synced\n"
-            "  \"lastMasternodeList\": xxxx,        (numeric) Timestamp of last MN list message\n"
-            "  \"lastMasternodeWinner\": xxxx,      (numeric) Timestamp of last MN winner message\n"
-            "  \"lastBudgetItem\": xxxx,            (numeric) Timestamp of last MN budget message\n"
-            "  \"lastFailure\": xxxx,           (numeric) Timestamp of last failed sync\n"
-            "  \"nCountFailures\": n,           (numeric) Number of failed syncs (total)\n"
-            "  \"sumMasternodeList\": n,        (numeric) Number of MN list messages (total)\n"
-            "  \"sumMasternodeWinner\": n,      (numeric) Number of MN winner messages (total)\n"
-            "  \"sumBudgetItemProp\": n,        (numeric) Number of MN budget messages (total)\n"
-            "  \"sumBudgetItemFin\": n,         (numeric) Number of MN budget finalization messages (total)\n"
-            "  \"countMasternodeList\": n,      (numeric) Number of MN list messages (local)\n"
-            "  \"countMasternodeWinner\": n,    (numeric) Number of MN winner messages (local)\n"
-            "  \"countBudgetItemProp\": n,      (numeric) Number of MN budget messages (local)\n"
-            "  \"countBudgetItemFin\": n,       (numeric) Number of MN budget finalization messages (local)\n"
-            "  \"RequestedMasternodeAssets\": n, (numeric) Status code of last sync phase\n"
-            "  \"RequestedMasternodeAttempt\": n, (numeric) Status code of last sync attempt\n"
-            "}\n"
-
-            "\nResult ('reset' mode):\n"
-            "\"status\"     (string) 'success'\n"
-            "\nExamples:\n" +
-            HelpExampleCli("mnsync", "\"status\"") + HelpExampleRpc("mnsync", "\"status\""));
-    }
+    std::string strMode = params[0].get_str();
 
     if (strMode == "status") {
         Object obj;
@@ -174,6 +142,7 @@ Value mnsync(const Array& params, bool fHelp)
         obj.push_back(Pair("countBudgetItemFin", masternodeSync.countBudgetItemFin));
         obj.push_back(Pair("RequestedMasternodeAssets", masternodeSync.RequestedMasternodeAssets));
         obj.push_back(Pair("RequestedMasternodeAttempt", masternodeSync.RequestedMasternodeAttempt));
+
 
         return obj;
     }
@@ -282,14 +251,14 @@ Value validateaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "validateaddress \"pivxaddress\"\n"
-            "\nReturn information about the given pivx address.\n"
+            "validateaddress \"blackbookaddress\"\n"
+            "\nReturn information about the given blackbook address.\n"
             "\nArguments:\n"
-            "1. \"pivxaddress\"     (string, required) The pivx address to validate\n"
+            "1. \"blackbookaddress\"     (string, required) The blackbook address to validate\n"
             "\nResult:\n"
             "{\n"
             "  \"isvalid\" : true|false,         (boolean) If the address is valid or not. If not, this is the only property returned.\n"
-            "  \"address\" : \"pivxaddress\", (string) The pivx address validated\n"
+            "  \"address\" : \"blackbookaddress\", (string) The blackbook address validated\n"
             "  \"ismine\" : true|false,          (boolean) If the address is yours or not\n"
             "  \"isscript\" : true|false,        (boolean) If the key is a script\n"
             "  \"pubkey\" : \"publickeyhex\",    (string) The hex value of the raw public key\n"
@@ -346,7 +315,7 @@ CScript _createmultisig_redeemScript(const Array& params)
     for (unsigned int i = 0; i < keys.size(); i++) {
         const std::string& ks = keys[i].get_str();
 #ifdef ENABLE_WALLET
-        // Case 1: PIVX address and we have full public key:
+        // Case 1: Blackbook address and we have full public key:
         CBitcoinAddress address(ks);
         if (pwalletMain && address.IsValid()) {
             CKeyID keyID;
@@ -392,9 +361,9 @@ Value createmultisig(const Array& params, bool fHelp)
 
                      "\nArguments:\n"
                      "1. nrequired      (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-                     "2. \"keys\"       (string, required) A json array of keys which are pivx addresses or hex-encoded public keys\n"
+                     "2. \"keys\"       (string, required) A json array of keys which are blackbook addresses or hex-encoded public keys\n"
                      "     [\n"
-                     "       \"key\"    (string) pivx address or hex-encoded public key\n"
+                     "       \"key\"    (string) blackbook address or hex-encoded public key\n"
                      "       ,...\n"
                      "     ]\n"
 
@@ -427,10 +396,10 @@ Value verifymessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)
         throw runtime_error(
-            "verifymessage \"pivxaddress\" \"signature\" \"message\"\n"
+            "verifymessage \"blackbookaddress\" \"signature\" \"message\"\n"
             "\nVerify a signed message\n"
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to use for the signature.\n"
+            "1. \"blackbookaddress\"  (string, required) The blackbook address to use for the signature.\n"
             "2. \"signature\"       (string, required) The signature provided by the signer in base 64 encoding (see signmessage).\n"
             "3. \"message\"         (string, required) The message that was signed.\n"
             "\nResult:\n"
@@ -505,7 +474,6 @@ Value getstakingstatus(const Array& params, bool fHelp)
             "  \"mintablecoins\": true|false,      (boolean) if the wallet has mintable coins\n"
             "  \"enoughcoins\": true|false,        (boolean) if available coins are greater than reserve balance\n"
             "  \"mnsync\": true|false,             (boolean) if masternode data is synced\n"
-            "  \"staking status\": true|false,     (boolean) if the wallet is staking or not\n"
             "}\n"
             "\nExamples:\n" +
             HelpExampleCli("getstakingstatus", "") + HelpExampleRpc("getstakingstatus", ""));
@@ -519,14 +487,6 @@ Value getstakingstatus(const Array& params, bool fHelp)
         obj.push_back(Pair("enoughcoins", nReserveBalance <= pwalletMain->GetBalance()));
     }
     obj.push_back(Pair("mnsync", masternodeSync.IsSynced()));
-
-    bool nStaking = false;
-    if (mapHashedBlocks.count(chainActive.Tip()->nHeight))
-        nStaking = true;
-    else if (mapHashedBlocks.count(chainActive.Tip()->nHeight - 1) && nLastCoinStakeSearchInterval)
-        nStaking = true;
-    obj.push_back(Pair("staking status", nStaking));
-
     return obj;
 }
 #endif // ENABLE_WALLET

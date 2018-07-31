@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/blackbook-config.h"
 #endif
 
 #include "optionsdialog.h"
@@ -11,7 +11,7 @@
 
 #include "bitcoinunits.h"
 #include "guiutil.h"
-#include "obfuscation.h"
+#include "Darksend.h"
 #include "optionsmodel.h"
 
 #include "main.h" // for MAX_SCRIPTCHECK_THREADS
@@ -82,6 +82,7 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet) : QDialog(paren
 
     /* Theme selector static themes */
     ui->theme->addItem(QString("Default"), QVariant("default"));
+	ui->theme->addItem(QString("Dark"), QVariant("dark"));
 
     /* Theme selector external themes */
     boost::filesystem::path pathAddr = GetDataDir() / "themes";
@@ -211,9 +212,7 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->thirdPartyTxUrls, OptionsModel::ThirdPartyTxUrls);
 
 
-    /* Obfuscation Rounds */
-    mapper->addMapping(ui->obfuscationRounds, OptionsModel::ObfuscationRounds);
-    mapper->addMapping(ui->anonymizePivx, OptionsModel::AnonymizePivxAmount);
+    /* Darksend Rounds */
     mapper->addMapping(ui->showMasternodesTab, OptionsModel::ShowMasternodesTab);
 }
 
@@ -254,7 +253,7 @@ void OptionsDialog::on_resetButton_clicked()
 void OptionsDialog::on_okButton_clicked()
 {
     mapper->submit();
-    obfuScationPool.cachedNumBlocks = std::numeric_limits<int>::max();
+    DarKsendPool.cachedNumBlocks = std::numeric_limits<int>::max();
     pwalletMain->MarkDirty();
     accept();
 }

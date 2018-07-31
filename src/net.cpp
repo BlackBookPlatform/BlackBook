@@ -1,12 +1,13 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The Blackbook developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/blackbook-config.h"
 #endif
 
 #include "net.h"
@@ -15,7 +16,7 @@
 #include "chainparams.h"
 #include "clientversion.h"
 #include "miner.h"
-#include "obfuscation.h"
+#include "Darksend.h"
 #include "primitives/transaction.h"
 #include "ui_interface.h"
 #include "wallet.h"
@@ -376,18 +377,18 @@ CNode* FindNode(const CService& addr)
     return NULL;
 }
 
-CNode* ConnectNode(CAddress addrConnect, const char* pszDest, bool obfuScationMaster)
+CNode* ConnectNode(CAddress addrConnect, const char* pszDest, bool DarKsendMaster)
 {
     if (pszDest == NULL) {
         // we clean masternode connections in CMasternodeMan::ProcessMasternodeConnections()
         // so should be safe to skip this and connect to local Hot MN on CActiveMasternode::ManageStatus()
-        if (IsLocal(addrConnect) && !obfuScationMaster)
+        if (IsLocal(addrConnect) && !DarKsendMaster)
             return NULL;
 
         // Look for an existing connection
         CNode* pnode = FindNode((CService)addrConnect);
         if (pnode) {
-            pnode->fObfuScationMaster = obfuScationMaster;
+            pnode->fDarKsendMaster = DarKsendMaster;
 
             pnode->AddRef();
             return pnode;
@@ -422,7 +423,7 @@ CNode* ConnectNode(CAddress addrConnect, const char* pszDest, bool obfuScationMa
         }
 
         pnode->nTimeConnected = GetTime();
-        if (obfuScationMaster) pnode->fObfuScationMaster = true;
+        if (DarKsendMaster) pnode->fDarKsendMaster = true;
 
         return pnode;
     } else if (!proxyConnectionFailed) {
@@ -459,6 +460,7 @@ bool CNode::DisconnectOldProtocol(int nVersionRequired, string strLastCommand)
 
     return fDisconnect;
 }
+
 
 void CNode::PushVersion()
 {
@@ -561,7 +563,7 @@ void CNode::copyStats(CNodeStats& stats)
         nPingUsecWait = GetTimeMicros() - nPingUsecStart;
     }
 
-    // Raw ping time is in microseconds, but show it to user as whole seconds (PIVX users should be well used to small numbers with many decimal places by now :)
+    // Raw ping time is in microseconds, but show it to user as whole seconds (Blackbook users should be well used to small numbers with many decimal places by now :)
     stats.dPingTime = (((double)nPingUsecTime) / 1e6);
     stats.dPingWait = (((double)nPingUsecWait) / 1e6);
 
@@ -1018,7 +1020,7 @@ void ThreadMapPort()
             }
         }
 
-        string strDesc = "PIVX " + FormatFullVersion();
+        string strDesc = "Blackbook " + FormatFullVersion();
 
         try {
             while (true) {
@@ -1490,7 +1492,7 @@ bool BindListenPort(const CService& addrBind, string& strError, bool fWhiteliste
     if (::bind(hListenSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to %s on this computer. PIVX Core is probably already running."), addrBind.ToString());
+            strError = strprintf(_("Unable to bind to %s on this computer. Blackbook Core is probably already running."), addrBind.ToString());
         else
             strError = strprintf(_("Unable to bind to %s on this computer (bind returned error %s)"), addrBind.ToString(), NetworkErrorString(nErr));
         LogPrintf("%s\n", strError);
@@ -1924,7 +1926,7 @@ CNode::CNode(SOCKET hSocketIn, CAddress addrIn, std::string addrNameIn, bool fIn
     nPingUsecStart = 0;
     nPingUsecTime = 0;
     fPingQueued = false;
-    fObfuScationMaster = false;
+    fDarKsendMaster = false;
 
     {
         LOCK(cs_nLastNodeId);

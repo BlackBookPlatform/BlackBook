@@ -43,8 +43,8 @@ public:
         ThreadsScriptVerif,  // int
         DatabaseCache,       // int
         SpendZeroConfChange, // bool
-        ObfuscationRounds,   // int
-        AnonymizePivxAmount, //int
+        DarksendRounds,   // int
+        AnonymizeBlackbookAmount, //int
         ShowMasternodesTab,  // bool
         Listen,              // bool
         OptionIDRowCount,
@@ -89,8 +89,8 @@ private:
 
 signals:
     void displayUnitChanged(int unit);
-    void obfuscationRoundsChanged(int);
-    void anonymizePivxAmountChanged(int);
+    void DarksendRoundsChanged(int);
+    void anonymizeBlackbookAmountChanged(int);
     void coinControlFeaturesChanged(bool);
 };
 

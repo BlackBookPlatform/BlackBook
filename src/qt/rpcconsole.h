@@ -11,7 +11,6 @@
 #include "net.h"
 
 #include <QDialog>
-#include <QCompleter>
 
 class ClientModel;
 
@@ -92,7 +91,7 @@ public slots:
     void showPeers();
     /** Switch to wallet-repair tab and show */
     void showRepair();
-    /** Open external (default) editor with pivx.conf */
+    /** Open external (default) editor with blackbook.conf */
     void showConfEditor();
     /** Open external (default) editor with masternode.conf */
     void showMNConfEditor();
@@ -130,7 +129,6 @@ private:
     QStringList history;
     int historyPtr;
     NodeId cachedNodeid;
-    QCompleter *autoCompleter;
 };
 
 #endif // BITCOIN_QT_RPCCONSOLE_H

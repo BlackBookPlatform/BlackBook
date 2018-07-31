@@ -76,7 +76,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
         int64_t nMedian = vTimeOffsets.median();
         std::vector<int64_t> vSorted = vTimeOffsets.sorted();
         // Only let other nodes change our time by so much
-        if (abs64(nMedian) < 70 * 60) {
+        if (abs64(nMedian) < 3 * 60) {
             nTimeOffset = nMedian;
         } else {
             nTimeOffset = 0;
@@ -91,7 +91,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
 
                 if (!fMatch) {
                     fDone = true;
-                    string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.");
+                    string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong Blackbook Core will not work properly.");
                     strMiscWarning = strMessage;
                     LogPrintf("*** %s\n", strMessage);
                     uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_WARNING);

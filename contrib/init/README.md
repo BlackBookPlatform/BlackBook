@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: pivxd.service
-Upstart: pivxd.conf
-OpenRC:  pivxd.openrc
-         pivxd.openrcconf
-CentOS:  pivxd.init
+SystemD: blackbookd.service
+Upstart: blackbookd.conf
+OpenRC:  blackbookd.openrc
+         blackbookd.openrcconf
+CentOS:  blackbookd.init
 
 have been made available to assist packagers in creating node packages here.
 

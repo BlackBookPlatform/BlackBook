@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Blackbook
+Comment=Blackbook P2P Cryptocurrency
+Comment[fr]=Blackbook, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Blackbook, eşten eşe kriptografik sanal para birimi
+Exec=blackbook-qt %u
+Terminal=false
+Type=Application
+Icon=blackbook128
+MimeType=x-scheme-handler/blackbook;
+Categories=Office;Finance;

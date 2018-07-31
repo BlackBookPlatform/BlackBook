@@ -40,6 +40,8 @@ WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),
 {
     // Create tabs
     overviewPage = new OverviewPage();
+	
+
     explorerWindow = new BlockExplorer(this);
     transactionsPage = new QWidget(this);
     QVBoxLayout* vbox = new QVBoxLayout();
@@ -68,7 +70,8 @@ WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),
     hbox_buttons->addWidget(exportButton);
     vbox->addLayout(hbox_buttons);
     transactionsPage->setLayout(vbox);
-
+    //AAAA
+	
     receiveCoinsPage = new ReceiveCoinsDialog();
     sendCoinsPage = new SendCoinsDialog();
 
@@ -86,7 +89,10 @@ WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),
 
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
-
+	
+	///AAAAA
+	
+	
     // Double-clicking on a transaction on the transaction history page shows details
     connect(transactionView, SIGNAL(doubleClicked(QModelIndex)), transactionView, SLOT(showDetails()));
 
@@ -193,6 +199,7 @@ void WalletView::gotoOverviewPage()
     setCurrentWidget(overviewPage);
 }
 
+
 void WalletView::gotoHistoryPage()
 {
     setCurrentWidget(transactionsPage);
@@ -283,7 +290,8 @@ void WalletView::encryptWallet(bool status)
 {
     if (!walletModel)
         return;
-    AskPassphraseDialog dlg(status ? AskPassphraseDialog::Encrypt : AskPassphraseDialog::Decrypt, this, walletModel);
+    AskPassphraseDialog dlg(status ? AskPassphraseDialog::Encrypt : AskPassphraseDialog::Decrypt, this);
+    dlg.setModel(walletModel);
     dlg.exec();
 
     updateEncryptionStatus();
@@ -309,7 +317,8 @@ void WalletView::backupWallet()
 
 void WalletView::changePassphrase()
 {
-    AskPassphraseDialog dlg(AskPassphraseDialog::ChangePass, this, walletModel);
+    AskPassphraseDialog dlg(AskPassphraseDialog::ChangePass, this);
+    dlg.setModel(walletModel);
     dlg.exec();
 }
 
@@ -320,7 +329,8 @@ void WalletView::unlockWallet()
     // Unlock wallet when requested by wallet model
 
     if (walletModel->getEncryptionStatus() == WalletModel::Locked || walletModel->getEncryptionStatus() == WalletModel::UnlockedForAnonymizationOnly) {
-        AskPassphraseDialog dlg(AskPassphraseDialog::UnlockAnonymize, this, walletModel);
+        AskPassphraseDialog dlg(AskPassphraseDialog::UnlockAnonymize, this);
+        dlg.setModel(walletModel);
         dlg.exec();
     }
 }

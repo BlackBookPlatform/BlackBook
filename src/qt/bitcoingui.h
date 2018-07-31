@@ -6,7 +6,7 @@
 #define BITCOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/blackbook-config.h"
 #endif
 
 #include "amount.h"
@@ -18,6 +18,7 @@
 #include <QPoint>
 #include <QPushButton>
 #include <QSystemTrayIcon>
+//
 
 class ClientModel;
 class NetworkStyle;
@@ -110,6 +111,7 @@ private:
     QAction* changePassphraseAction;
     QAction* unlockWalletAction;
     QAction* lockWalletAction;
+    QAction* lockWalletAction2;
     QAction* aboutQtAction;
     QAction* openInfoAction;
     QAction* openRPCConsoleAction;

@@ -1,11 +1,12 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The Blackbook developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/blackbook-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -61,7 +62,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::PIV);
+        settings.setValue("nDisplayUnit", BitcoinUnits::BOOK);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -72,14 +73,14 @@ void OptionsModel::Init()
         settings.setValue("fCoinControlFeatures", false);
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
-    if (!settings.contains("nObfuscationRounds"))
-        settings.setValue("nObfuscationRounds", 2);
+    if (!settings.contains("nDarksendRounds"))
+        settings.setValue("nDarksendRounds", 2);
 
-    if (!settings.contains("nAnonymizePivxAmount"))
-        settings.setValue("nAnonymizePivxAmount", 1000);
+    if (!settings.contains("nAnonymizeBlackbookAmount"))
+        settings.setValue("nAnonymizeBlackbookAmount", 1000);
 
-    nObfuscationRounds = settings.value("nObfuscationRounds").toLongLong();
-    nAnonymizePivxAmount = settings.value("nAnonymizePivxAmount").toLongLong();
+    nDarksendRounds = settings.value("nDarksendRounds").toLongLong();
+    nAnonymizeBlackbookAmount = settings.value("nAnonymizeBlackbookAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -144,10 +145,10 @@ void OptionsModel::Init()
     if (!SoftSetArg("-lang", settings.value("language").toString().toStdString()))
         addOverriddenOption("-lang");
 
-    if (settings.contains("nObfuscationRounds"))
-        SoftSetArg("-obfuscationrounds", settings.value("nObfuscationRounds").toString().toStdString());
-    if (settings.contains("nAnonymizePivxAmount"))
-        SoftSetArg("-anonymizepivxamount", settings.value("nAnonymizePivxAmount").toString().toStdString());
+    if (settings.contains("nDarksendRounds"))
+        SoftSetArg("-Darksendrounds", settings.value("nDarksendRounds").toString().toStdString());
+    if (settings.contains("nAnonymizeBlackbookAmount"))
+        SoftSetArg("-anonymizeblackbookamount", settings.value("nAnonymizeBlackbookAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -158,7 +159,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in pivx.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in blackbook.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -225,10 +226,10 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nDatabaseCache");
         case ThreadsScriptVerif:
             return settings.value("nThreadsScriptVerif");
-        case ObfuscationRounds:
-            return QVariant(nObfuscationRounds);
-        case AnonymizePivxAmount:
-            return QVariant(nAnonymizePivxAmount);
+        case DarksendRounds:
+            return QVariant(nDarksendRounds);
+        case AnonymizeBlackbookAmount:
+            return QVariant(nAnonymizeBlackbookAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -332,15 +333,15 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
                 setRestartRequired(true);
             }
             break;
-        case ObfuscationRounds:
-            nObfuscationRounds = value.toInt();
-            settings.setValue("nObfuscationRounds", nObfuscationRounds);
-            emit obfuscationRoundsChanged(nObfuscationRounds);
+        case DarksendRounds:
+            nDarksendRounds = value.toInt();
+            settings.setValue("nDarksendRounds", nDarksendRounds);
+            emit DarksendRoundsChanged(nDarksendRounds);
             break;
-        case AnonymizePivxAmount:
-            nAnonymizePivxAmount = value.toInt();
-            settings.setValue("nAnonymizePivxAmount", nAnonymizePivxAmount);
-            emit anonymizePivxAmountChanged(nAnonymizePivxAmount);
+        case AnonymizeBlackbookAmount:
+            nAnonymizeBlackbookAmount = value.toInt();
+            settings.setValue("nAnonymizeBlackbookAmount", nAnonymizeBlackbookAmount);
+            emit anonymizeBlackbookAmountChanged(nAnonymizeBlackbookAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

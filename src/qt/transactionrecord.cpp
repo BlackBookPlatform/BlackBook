@@ -1,14 +1,15 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The Blackbook developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "transactionrecord.h"
 
 #include "base58.h"
-#include "obfuscation.h"
-#include "swifttx.h"
+#include "Darksend.h"
+#include "Instantx.h"
 #include "timedata.h"
 #include "wallet.h"
 
@@ -82,7 +83,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 sub.credit = txout.nValue;
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address)) {
-                    // Received by PIVX Address
+                    // Received by Blackbook Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {
@@ -94,7 +95,52 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                     // Generated
                     sub.type = TransactionRecord::Generated;
                 }
-
+				
+				int nHeight = chainActive.Height();
+				int64_t nSubsidy;
+				
+				if(nHeight <= 86400 && nHeight > 0) {
+					nSubsidy = 200 * COIN;
+					if(nSubsidy / 100 * 20 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 86400 && nHeight <= 151200) {
+					nSubsidy = 150 * COIN;
+					if(nSubsidy / 100 * 25 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 151200 && nHeight <= 152500) {
+					nSubsidy = 125 * COIN;
+					if(nSubsidy / 100 * 20 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 152500 && nHeight <= 225000) {
+					nSubsidy = 125 * COIN;
+					if(nSubsidy / 100 * 30 == txout.nValue || nSubsidy / 100 * 60 == txout.nValue ) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 225000 && nHeight <= 302400) {
+					nSubsidy = 125 * COIN;
+					if(nSubsidy / 100 * 60 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 302400 && nHeight <= 345600) {
+					nSubsidy = 100 * COIN;
+					if(nSubsidy / 100 * 60 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 345600 && nHeight <= 388800) {
+					nSubsidy = 75 * COIN;
+					if(nSubsidy / 100 * 60 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 388800 && nHeight <= 475200) { // 475200 => LAST POW BLOCK
+					nSubsidy = 50 * COIN;
+					if(nSubsidy / 100 * 60 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				}
+				
                 parts.append(sub);
             }
         }
@@ -127,7 +173,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
         }
 
         if (fAllFromMeDenom && fAllToMeDenom && nFromMe * nToMe) {
-            parts.append(TransactionRecord(hash, nTime, TransactionRecord::ObfuscationDenominate, "", -nDebit, nCredit));
+            parts.append(TransactionRecord(hash, nTime, TransactionRecord::DarksendDenominate, "", -nDebit, nCredit));
             parts.last().involvesWatchAddress = false; // maybe pass to TransactionRecord as constructor argument
         } else if (fAllFromMe && fAllToMe) {
             // Payment to self
@@ -143,7 +189,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 sub.type = TransactionRecord::Obfuscated;
                 CTxDestination address;
                 if (ExtractDestination(wtx.vout[0].scriptPubKey, address)) {
-                    // Sent to PIVX Address
+                    // Sent to Blackbook Address
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {
                     // Sent to IP, or other non-address transaction like OP_EVAL
@@ -154,9 +200,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                     const CTxOut& txout = wtx.vout[nOut];
                     sub.idx = parts.size();
 
-                    if (wallet->IsCollateralAmount(txout.nValue)) sub.type = TransactionRecord::ObfuscationMakeCollaterals;
-                    if (wallet->IsDenominatedAmount(txout.nValue)) sub.type = TransactionRecord::ObfuscationCreateDenominations;
-                    if (nDebit - wtx.GetValueOut() == OBFUSCATION_COLLATERAL) sub.type = TransactionRecord::ObfuscationCollateralPayment;
+                    if (wallet->IsCollateralAmount(txout.nValue)) sub.type = TransactionRecord::DarksendMakeCollaterals;
+                    if (wallet->IsDenominatedAmount(txout.nValue)) sub.type = TransactionRecord::DarksendCreateDenominations;
+                    if (nDebit - wtx.GetValueOut() == DARKSEND_COLLATERAL) sub.type = TransactionRecord::DarksendCollateralPayment;
                 }
             }
 
@@ -186,7 +232,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
 
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address)) {
-                    // Sent to PIVX Address
+                    // Sent to Blackbook Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {

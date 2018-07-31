@@ -12,6 +12,7 @@
 #include "timedata.h"
 #include "util.h"
 
+
 using namespace std;
 
 bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
@@ -19,7 +20,7 @@ bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 3-hour for production network and 20-minute for test network
 unsigned int nModifierInterval;
-int nStakeTargetSpacing = 60;
+int nStakeTargetSpacing = 300;
 unsigned int getIntervalVersion(bool fTestNet)
 {
     if (fTestNet)
@@ -273,7 +274,7 @@ bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifier, int
 
 uint256 stakeHash(unsigned int nTimeTx, CDataStream ss, unsigned int prevoutIndex, uint256 prevoutHash, unsigned int nTimeBlockFrom)
 {
-    //Pivx will hash in the transaction hash and the index number in order to make sure each hash is unique
+    //Blackbook will hash in the transaction hash and the index number in order to make sure each hash is unique
     ss << nTimeBlockFrom << prevoutIndex << prevoutHash << nTimeTx;
     return Hash(ss.begin(), ss.end());
 }

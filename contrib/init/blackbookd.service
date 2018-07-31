@@ -1,0 +1,26 @@
+[Unit]
+Description=Blackbook's distributed currency daemon
+After=network.target
+
+[Service]
+User=blackbook
+Group=blackbook
+
+Type=forking
+PIDFile=/var/lib/blackbookd/blackbookd.pid
+
+ExecStart=/usr/bin/blackbookd -daemon -pid=/var/lib/blackbookd/blackbookd.pid \
+          -conf=/etc/blackbook/blackbook.conf -datadir=/var/lib/blackbookd
+
+ExecStop=-/usr/bin/blackbook-cli -conf=/etc/blackbook/blackbook.conf \
+         -datadir=/var/lib/blackbookd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

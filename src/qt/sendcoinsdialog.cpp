@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The Blackbook developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +9,6 @@
 #include "ui_sendcoinsdialog.h"
 
 #include "addresstablemodel.h"
-#include "askpassphrasedialog.h"
 #include "bitcoinunits.h"
 #include "clientmodel.h"
 #include "coincontroldialog.h"
@@ -59,30 +59,26 @@ SendCoinsDialog::SendCoinsDialog(QWidget* parent) : QDialog(parent),
     connect(ui->splitBlockCheckBox, SIGNAL(stateChanged(int)), this, SLOT(splitBlockChecked(int)));
     connect(ui->splitBlockLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(splitBlockLineEditChanged(const QString&)));
 
-    // PIVX specific
+    // Blackbook specific
     QSettings settings;
-    if (!settings.contains("bUseObfuScation"))
-        settings.setValue("bUseObfuScation", false);
-    if (!settings.contains("bUseSwiftTX"))
-        settings.setValue("bUseSwiftTX", false);
+    if (!settings.contains("bUseDarKsend"))
+        settings.setValue("bUseDarKsend", false);
+    if (!settings.contains("bUseInstantX"))
+        settings.setValue("bUseInstantX", false);
 
-    bool useObfuScation = settings.value("bUseObfuScation").toBool();
-    bool useSwiftTX = settings.value("bUseSwiftTX").toBool();
+    bool useDarKsend = settings.value("bUseDarKsend").toBool();
+    bool useInstantX = settings.value("bUseInstantX").toBool();
     if (fLiteMode) {
-        ui->checkUseObfuscation->setChecked(false);
-        ui->checkUseObfuscation->setVisible(false);
-        ui->checkSwiftTX->setVisible(false);
-        CoinControlDialog::coinControl->useObfuScation = false;
-        CoinControlDialog::coinControl->useSwiftTX = false;
+        ui->checkInstantX->setVisible(false);
+        CoinControlDialog::coinControl->useDarKsend = false;
+        CoinControlDialog::coinControl->useInstantX = false;
     } else {
-        ui->checkUseObfuscation->setChecked(useObfuScation);
-        ui->checkSwiftTX->setChecked(useSwiftTX);
-        CoinControlDialog::coinControl->useObfuScation = useObfuScation;
-        CoinControlDialog::coinControl->useSwiftTX = useSwiftTX;
+        ui->checkInstantX->setChecked(useInstantX);
+        CoinControlDialog::coinControl->useDarKsend = useDarKsend;
+        CoinControlDialog::coinControl->useInstantX = useInstantX;
     }
 
-    connect(ui->checkUseObfuscation, SIGNAL(stateChanged(int)), this, SLOT(updateDisplayUnit()));
-    connect(ui->checkSwiftTX, SIGNAL(stateChanged(int)), this, SLOT(updateSwiftTX()));
+    connect(ui->checkInstantX, SIGNAL(stateChanged(int)), this, SLOT(updateInstantX()));
 
     // Coin Control: clipboard actions
     QAction* clipboardQuantityAction = new QAction(tr("Copy quantity"), this);
@@ -269,26 +265,16 @@ void SendCoinsDialog::on_sendButton_clicked()
     QString strFee = "";
     recipients[0].inputType = ONLY_DENOMINATED;
 
-    if (ui->checkUseObfuscation->isChecked()) {
-        recipients[0].inputType = ONLY_DENOMINATED;
-        strFunds = tr("using") + " <b>" + tr("anonymous funds") + "</b>";
-        QString strNearestAmount(
-            BitcoinUnits::formatWithUnit(
-                model->getOptionsModel()->getDisplayUnit(), 0.1 * COIN));
-        strFee = QString(tr(
-            "(obfuscation requires this amount to be rounded up to the nearest %1).")
-                             .arg(strNearestAmount));
-    } else {
-        recipients[0].inputType = ALL_COINS;
-        strFunds = tr("using") + " <b>" + tr("any available funds (not recommended)") + "</b>";
-    }
+    
+	recipients[0].inputType = ALL_COINS;
+	strFunds = tr("using") + " <b>" + tr("any available funds (not recommended)") + "</b>";
 
-    if (ui->checkSwiftTX->isChecked()) {
-        recipients[0].useSwiftTX = true;
+    if (ui->checkInstantX->isChecked()) {
+        recipients[0].useInstantX = true;
         strFunds += " ";
-        strFunds += tr("and SwiftTX");
+        strFunds += tr("and InstantX");
     } else {
-        recipients[0].useSwiftTX = false;
+        recipients[0].useInstantX = false;
     }
 
 
@@ -363,7 +349,7 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
 
     // process prepareStatus and on error generate message shown to user
     processSendCoinsReturn(prepareStatus,
-        BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()), true);
+        BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
 
     if (prepareStatus.status != WalletModel::OK) {
         fNewRecipientAllowed = true;
@@ -572,12 +558,7 @@ void SendCoinsDialog::setBalance(const CAmount& balance, const CAmount& unconfir
     if (model && model->getOptionsModel()) {
         uint64_t bal = 0;
         QSettings settings;
-        settings.setValue("bUseObfuScation", ui->checkUseObfuscation->isChecked());
-        if (ui->checkUseObfuscation->isChecked()) {
-            bal = anonymizedBalance;
-        } else {
-            bal = balance;
-        }
+        bal = balance;
 
         ui->labelBalance->setText(BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), bal));
     }
@@ -590,25 +571,22 @@ void SendCoinsDialog::updateDisplayUnit()
 
     setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(), model->getAnonymizedBalance(),
         model->getWatchBalance(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
-    CoinControlDialog::coinControl->useObfuScation = ui->checkUseObfuscation->isChecked();
     coinControlUpdateLabels();
     ui->customFee->setDisplayUnit(model->getOptionsModel()->getDisplayUnit());
     updateMinFeeLabel();
     updateSmartFeeLabel();
 }
 
-void SendCoinsDialog::updateSwiftTX()
+void SendCoinsDialog::updateInstantX()
 {
     QSettings settings;
-    settings.setValue("bUseSwiftTX", ui->checkSwiftTX->isChecked());
-    CoinControlDialog::coinControl->useSwiftTX = ui->checkSwiftTX->isChecked();
+    settings.setValue("bUseInstantX", ui->checkInstantX->isChecked());
+    CoinControlDialog::coinControl->useInstantX = ui->checkInstantX->isChecked();
     coinControlUpdateLabels();
 }
 
-void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn& sendCoinsReturn, const QString& msgArg, bool fPrepare)
+void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn& sendCoinsReturn, const QString& msgArg)
 {
-    bool fAskForUnlock = false;
-    
     QPair<QString, CClientUIInterface::MessageBoxFlags> msgParams;
     // Default to a warning message, override if error message is needed
     msgParams.second = CClientUIInterface::MSG_WARNING;
@@ -641,13 +619,9 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn&
         msgParams.second = CClientUIInterface::MSG_ERROR;
         break;
     case WalletModel::AnonymizeOnlyUnlocked:
-        // Unlock is only need when the coins are send
-        if(!fPrepare)
-            fAskForUnlock = true;
-        else
-            msgParams.first = tr("Error: The wallet was unlocked only to anonymize coins.");
-        break;
-
+        QMessageBox::warning(this, tr("Send Coins"),
+            tr("Error: The wallet was unlocked only to anonymize coins."),
+            QMessageBox::Ok, QMessageBox::Ok);
     case WalletModel::InsaneFee:
         msgParams.first = tr("A fee %1 times higher than %2 per kB is considered an insanely high fee.").arg(10000).arg(BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), ::minRelayTxFee.GetFeePerK()));
         break;
@@ -655,18 +629,6 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn&
     case WalletModel::OK:
     default:
         return;
-    }
-
-    // Unlock wallet if it wasn't fully unlocked already
-    if(fAskForUnlock) {
-        model->requestUnlock(false);
-        if(model->getEncryptionStatus () != WalletModel::Unlocked) {
-            msgParams.first = tr("Error: The wallet was unlocked only to anonymize coins. Unlock canceled.");
-        }
-        else {
-            // Wallet unlocked
-            return;
-        }
     }
 
     emit message(tr("Send Coins"), msgParams.first, msgParams.second);
@@ -903,7 +865,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
             ui->labelCoinControlChangeLabel->setText("");
         } else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid PIVX address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Blackbook address"));
         } else // Valid address
         {
             CPubKey pubkey;
@@ -942,8 +904,6 @@ void SendCoinsDialog::coinControlUpdateLabels()
         if (entry)
             CoinControlDialog::payAmounts.append(entry->getValue().amount);
     }
-
-    ui->checkUseObfuscation->setChecked(CoinControlDialog::coinControl->useObfuScation);
 
     if (CoinControlDialog::coinControl->HasSelected()) {
         // actual coin control calculation
