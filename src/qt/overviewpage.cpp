@@ -118,7 +118,7 @@ OverviewPage::OverviewPage(QWidget* parent) : QWidget(parent),
     nDisplayUnit = 0; // just make sure it's not unitialized
     ui->setupUi(this);
 
-	ui->frameDarksend->setVisible(true);
+	ui->frameDarksend->setVisible(false);
 	
     // Recent transactions
     ui->listTransactions->setItemDelegate(txdelegate);
