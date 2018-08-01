@@ -85,16 +85,16 @@ width: 20px;
 }
 
 QTabWidget {
-background-color:#f2f2f2;
+background-color:#232C31;
 }
 
 QTabWidget::pane {
-background-color:#f2f2f2;
+background-color:#232C31;
 border:1px solid #c2c2c2;
 }
 
 QTabBar {
-background-color:#f2f2f2;
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -158,7 +158,7 @@ font-size:12px;
 }
 
 .QValidatedLineEdit:disabled, .QLineEdit:disabled {
-background-color:#f2f2f2;
+background-color:#232C31;
 }
 
 /****************************************************************************************/
@@ -198,7 +198,7 @@ color:#818181;
 }
 
 QComboBox:checked {
-background:#f2f2f2;
+background:#232C31;
 }
 
 QComboBox:editable {
@@ -238,7 +238,7 @@ background:#232C31;
 
 QComboBox::item:selected {
 border:0px solid transparent;
-background:#f2f2f2;
+background:#232C31;
 }
 
 QComboBox::indicator {
@@ -351,7 +351,7 @@ background:transparent;
 
 QTreeWidget { /* Tree Background */
 background-color:#fcfcfc;
-alternate-background-color:#f2f2f2;
+alternate-background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -441,7 +441,7 @@ background-image: url(':/images/rightArrow_small');
 }
 
 QSlider::handle:horizontal {
-background-color:#f2f2f2;
+background-color:#232C31;
 border:1px solid #c2c2c2;
 border-radius:10px;
 }
