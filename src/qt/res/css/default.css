@@ -102,6 +102,10 @@ QTabBar::tab:hover:!selected {
 background-color:#232C31;
 }
 
+QTabBar::tab {
+background-color:#232C31;
+}
+
 QWidget {
 selection-background-color:#3C4D54; /* Object highlight color */
 selection-color:#232C31;
@@ -164,7 +168,7 @@ background-color:#232C31;
 /****************************************************************************************/
 
 QPushButton { /* Global Button Style */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #3C4D54, stop: .1 #3C4D54, stop: .95 #3C4D54, stop: 1 #1D80B5);
+background-color:#232C31;
 border:0;
 border-radius:0px;
 color:#232C31;
@@ -177,7 +181,7 @@ padding-bottom:5px;
 }
 
 QPushButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #64ACD2, stop: .1 #64ACD2, stop: .95 #64ACD2, stop: 1 #3C4D54);
+background-color:#232C31;
 }
 
 QPushButton:focus {
@@ -301,7 +305,7 @@ outline:0;
 
 QHeaderView::section { /* Table Header Sections */
 qproperty-alignment:center;
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.25, stop: 0 #3C4D54, stop: 1 #3C4D54);
+background-color:#232C31;
 color:#232C31;
 min-height:25px;
 font-weight:bold;
@@ -461,7 +465,7 @@ border-radius:3px;
 /**************************** DIALOG BOXES **********************************************/
 
 QDialog {
-background-color: #f8f6f6;
+background-color: #232C31;
 }
 
 QDialog .QTabWidget {
@@ -524,7 +528,7 @@ font-weight:bold;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton { /* ... Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -532,7 +536,7 @@ padding-right:10px;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -571,7 +575,7 @@ padding-right:10px;
 }
 
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM { /* Clear Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -579,7 +583,7 @@ padding-right:10px;
 }
 
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -595,7 +599,7 @@ padding-right:10px;
 }
 
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM { /* Verify Message - Clear Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -603,7 +607,7 @@ padding-right:10px;
 }
 
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -618,7 +622,7 @@ background-color:#F8F6F6;
 }
 
 QWidget#AddressBookPage QPushButton#newAddress { /* New Address Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -626,7 +630,7 @@ padding-right:10px;
 }
 
 QWidget#AddressBookPage QPushButton#newAddress:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -635,7 +639,7 @@ border:1px solid #9e9e9e;
 }
 
 QWidget#AddressBookPage QPushButton#copyAddress { /* Copy Address Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -643,7 +647,7 @@ padding-right:10px;
 }
 
 QWidget#AddressBookPage QPushButton#copyAddress:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -652,7 +656,7 @@ border:1px solid #9e9e9e;
 }
 
 QWidget#AddressBookPage QPushButton#deleteAddress { /* Delete Address Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -660,7 +664,7 @@ padding-right:10px;
 }
 
 QWidget#AddressBookPage QPushButton#deleteAddress:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -1095,7 +1099,7 @@ QWidget .QFrame#frameDarksend .QPushButton#toggleDarksend:hover {
 
 QWidget .QFrame#frameDarksend .QPushButton#DarksendAuto { /* Try Mix Button */
 qproperty-geometry: rect(120 314 140 25);
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 min-height:25px;
@@ -1104,7 +1108,7 @@ padding:0px;
 }
 
 QWidget .QFrame#frameDarksend .QPushButton#DarksendAuto:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -1114,7 +1118,7 @@ border:1px solid #9e9e9e;
 
 QWidget .QFrame#frameDarksend .QPushButton#DarksendReset { /* Reset Button */
 qproperty-geometry: rect(265 314 140 25);
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 min-height:25px;
@@ -1123,7 +1127,7 @@ padding:0px;
 }
 
 QWidget .QFrame#frameDarksend .QPushButton#DarksendReset:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -1185,7 +1189,7 @@ padding-right:10px;
 }
 
 QDialog#SendCoinsDialog .QPushButton#clearButton { /* Clear Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1193,7 +1197,7 @@ padding-right:10px;
 }
 
 QDialog#SendCoinsDialog .QPushButton#clearButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -1202,7 +1206,7 @@ border:1px solid #9e9e9e;
 }
 
 QDialog#SendCoinsDialog .QPushButton#addButton { /* Add Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1210,7 +1214,7 @@ padding-right:10px;
 }
 
 QDialog#SendCoinsDialog .QPushButton#addButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -1484,7 +1488,7 @@ padding-right:5px;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton { /* Clear Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1492,7 +1496,7 @@ padding-right:10px;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -1501,7 +1505,7 @@ border:1px solid #9e9e9e;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton { /* Show Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1509,7 +1513,7 @@ padding-right:10px;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
@@ -1518,7 +1522,7 @@ border:1px solid #9e9e9e;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#removeRequestButton { /* Remove Button */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1526,7 +1530,7 @@ padding-right:10px;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#removeRequestButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
+background-color:#232C31;
 color:#FFFFFF;
 }
 
