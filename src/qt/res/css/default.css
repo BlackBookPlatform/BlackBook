@@ -114,17 +114,17 @@ outline:0; /* Remove Annoying Focus Rectangle */
 
 QGroupBox {
 background-color:#fcfcfc;
-color:#FFFFFF;
+color:#232C31;
 }
 
 QToolTip {
 background-color:#232C31;
-color:#FFFFFF;
+color:#232C31;
 }
 
 QTextEdit {
 background-color:#232C31;
-color:#FFFFFF;
+color:#232C31;
 }
 
 /****************************************************************************************/
@@ -154,7 +154,7 @@ min-height:25px;
 outline:0;
 padding:3px;
 background-color:#fcfcfc;
-color:#FFFFFF;
+color:#232C31;
 }
 
 .QLineEdit:!focus {
@@ -168,7 +168,7 @@ background-color:#232C31;
 /****************************************************************************************/
 
 QPushButton { /* Global Button Style */
-background-color:#232C31;
+background-color:#3C4D54;
 border:0;
 border-radius:0px;
 color:#232C31;
@@ -575,7 +575,7 @@ padding-right:10px;
 }
 
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM { /* Clear Button */
-background-color:#232C31;
+background-color:#3C4D54;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -599,7 +599,7 @@ padding-right:10px;
 }
 
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM { /* Verify Message - Clear Button */
-background-color:#232C31;
+background-color:#3C4D54;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -752,7 +752,7 @@ max-width:60px;
 QDialog#RPCConsole QTextEdit#messagesWidget { /* Console Messages Window */
 border:0;
 background-color:#fcfcfc;
-color:#FFFFFF;
+color:#232C31;
 }
 
 QDialog#RPCConsole QLineEdit#lineEdit { /* Console Input */
@@ -1189,7 +1189,7 @@ padding-right:10px;
 }
 
 QDialog#SendCoinsDialog .QPushButton#clearButton { /* Clear Button */
-background-color:#232C31;
+background-color:#3C4D54;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1206,7 +1206,7 @@ border:1px solid #9e9e9e;
 }
 
 QDialog#SendCoinsDialog .QPushButton#addButton { /* Add Button */
-background-color:#232C31;
+background-color:#3C4D54;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1488,7 +1488,7 @@ padding-right:5px;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton { /* Clear Button */
-background-color:#232C31;
+background-color:#3C4D54;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1505,7 +1505,7 @@ border:1px solid #9e9e9e;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton { /* Show Button */
-background-color:#232C31;
+background-color:#3C4D54;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
@@ -1522,7 +1522,7 @@ border:1px solid #9e9e9e;
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#removeRequestButton { /* Remove Button */
-background-color:#232C31;
+background-color:#3C4D54;
 border:1px solid #d2d2d2;
 color:#616161;
 padding-left:10px;
