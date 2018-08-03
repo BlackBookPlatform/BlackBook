@@ -521,12 +521,13 @@ min-height:15px;
 /* Dialog: Open URI */
 QDialog#OpenURIDialog QLabel#label { /* URI Label */
 font-weight:bold;
+color:#FFFFFF;
 }
 
 QDialog#OpenURIDialog QPushButton#selectFileButton { /* ... Button */
 background-color:#232C31;
 border:1px solid #d2d2d2;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -573,7 +574,7 @@ padding-right:10px;
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM { /* Clear Button */
 background-color:#3C4D54;
 border:1px solid #d2d2d2;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -596,7 +597,7 @@ padding-right:10px;
 
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM { /* Verify Message - Clear Button */
 background-color:#3C4D54;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -618,7 +619,7 @@ background-color:#F8F6F6;
 
 QWidget#AddressBookPage QPushButton#newAddress { /* New Address Button */
 background-color:#232C31;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -634,7 +635,7 @@ QWidget#AddressBookPage QPushButton#newAddress:pressed {
 
 QWidget#AddressBookPage QPushButton#copyAddress { /* Copy Address Button */
 background-color:#232C31;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -650,7 +651,7 @@ QWidget#AddressBookPage QPushButton#copyAddress:pressed {
 
 QWidget#AddressBookPage QPushButton#deleteAddress { /* Delete Address Button */
 background-color:#232C31;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -679,6 +680,7 @@ QDialog#AskPassphraseDialog QLabel#passLabel1, QDialog#AskPassphraseDialog QLabe
 qproperty-alignment: 'AlignVCenter | AlignRight';
 min-width:170px;
 min-height:33px; /* base width of 25px for QLineEdit, plus padding and border */
+color:#FFFFFF;
 }
 
 /* Options Dialog */
@@ -727,6 +729,7 @@ QDialog#RPCConsole QWidget#tab_info QLabel#label_11, QDialog#RPCConsole QWidget#
 qproperty-alignment: 'AlignBottom';
 min-height:25px;
 min-width:180px;
+color:#FFFFFF;
 }
 
 QDialog#RPCConsole QWidget#tab_peers QLabel#peerHeading { /* Peers Info Header */
@@ -770,6 +773,7 @@ background:#232C31;
 /* Command Line Options Dialog */
 QDialog#HelpMessageDialog QScrollArea * {
 background-color:#232C31;
+color:#FFFFFF;
 }
 
 QDialog#HelpMessageDialog QScrollBar:vertical, QDialog#HelpMessageDialog QScrollBar:horizontal {
@@ -1180,7 +1184,7 @@ padding-right:10px;
 
 QDialog#SendCoinsDialog .QPushButton#clearButton { /* Clear Button */
 background-color:#3C4D54;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -1196,7 +1200,7 @@ QDialog#SendCoinsDialog .QPushButton#clearButton:pressed {
 
 QDialog#SendCoinsDialog .QPushButton#addButton { /* Add Button */
 background-color:#3C4D54;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -1451,7 +1455,7 @@ background-color:#232C31;
 QWidget#ReceiveCoinsDialog .QFrame#frame2 .QLabel#label_2 { /* Label Label */
 background-color:#3C4D54;
 min-width:102px;
-color:#232C31;
+color:#FFFFFF;
 font-weight:bold;
 font-size:11px;
 padding-right:5px;
@@ -1460,7 +1464,7 @@ padding-right:5px;
 QWidget#ReceiveCoinsDialog .QFrame#frame2 .QLabel#label { /* Amount Label */
 background-color:#3C4D54;
 min-width:102px;
-color:#232C31;
+color:#FFFFFF;
 font-weight:bold;
 font-size:11px;
 padding-right:5px;
@@ -1469,7 +1473,7 @@ padding-right:5px;
 QWidget#ReceiveCoinsDialog .QFrame#frame2 .QLabel#label_3 { /* Message Label */
 background-color:#3C4D54;
 min-width:102px;
-color:#232C31;
+color:#FFFFFF;
 font-weight:bold;
 font-size:11px;
 padding-right:5px;
@@ -1477,7 +1481,7 @@ padding-right:5px;
 
 QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton { /* Clear Button */
 background-color:#3C4D54;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -1493,7 +1497,7 @@ QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton:pressed {
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton { /* Show Button */
 background-color:#3C4D54;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
@@ -1509,7 +1513,7 @@ QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton:pressed {
 
 QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#removeRequestButton { /* Remove Button */
 background-color:#3C4D54;
-color:#616161;
+color:#FFFFFF;
 padding-left:10px;
 padding-right:10px;
 }
