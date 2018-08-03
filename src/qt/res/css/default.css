@@ -73,8 +73,6 @@ background-color:#232C31;
 
 QProgressBar {
 color:#FFFFFF;
-border:1px solid grey;
-border-radius:1px;
 background-color:transparent;
 }
 
@@ -169,7 +167,7 @@ background-color:#232C31;
 QPushButton { /* Global Button Style */
 background-color:#3C4D54;
 border-radius:0px;
-color:#232C31;
+color:#FFFFFF;
 font-size:12px;
 font-weight:bold;
 padding-left:25px;
@@ -194,9 +192,9 @@ border:1px solid #232C31;
 QComboBox { /* Dropdown Menus */
 border:1px solid #3C4D54;
 padding: 3px 5px 3px 5px;
-background:#fcfcfc;
+background:#232C31;
 min-height:25px;
-color:#818181;
+color:#FFFFFF;
 }
 
 QComboBox:checked {
