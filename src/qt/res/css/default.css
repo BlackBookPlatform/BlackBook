@@ -30,7 +30,7 @@ color:#FFFFFF;
 
 QMenuBar::item:selected {
 background-color:#3C4D54;
-color: #232C31
+color: #FFFFFF;
 }
 
 QMenu {
@@ -43,7 +43,7 @@ color:#FFFFFF;
 
 QMenu::item:selected {
 background-color:#3C4D54;
-color:#232C31;
+color:#FFFFFF;
 }
 
 QToolBar {
@@ -120,7 +120,7 @@ color:#232C31;
 
 QTextEdit {
 background-color:#232C31;
-color:#232C31;
+color:#FFFFFF;
 }
 
 /****************************************************************************************/
@@ -550,7 +550,7 @@ padding-right:10px;
 
 QDialog#SignVerifyMessageDialog QPlainTextEdit { /* Message Signing Text */
 border:1px solid #3C4D54;
-background-color:#232C31;
+background-color:#FFFFFF;
 }
 
 QDialog#SignVerifyMessageDialog QPushButton#pasteButton_SM { /* Paste Button */
@@ -745,8 +745,8 @@ max-width:60px;
 
 QDialog#RPCConsole QTextEdit#messagesWidget { /* Console Messages Window */
 border:0;
-background-color:#fcfcfc;
-color:#232C31;
+background-color:#232C31;
+color:#FFFFFF;
 }
 
 QDialog#RPCConsole QLineEdit#lineEdit { /* Console Input */
