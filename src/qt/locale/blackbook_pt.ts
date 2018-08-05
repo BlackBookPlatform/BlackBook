@@ -3654,8 +3654,8 @@ https://www.transifex.com/blackbook-crypto/blackbook-wallet-translations/</trans
         <translation>Aviso: Por favor verifique que a data e a hora do computador está correcta! Se o relógio estiver errado o Blackbook Core não vai funcionar correctamente.</translation>
     </message>
     <message>
-        <source>(55500 could be used only on mainnet)</source>
-        <translation>(55500 apenas pode ser usado para mainnet)</translation>
+        <source>(22365 could be used only on mainnet)</source>
+        <translation>(22365 apenas pode ser usado para mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4064,8 +4064,8 @@ https://www.transifex.com/blackbook-crypto/blackbook-wallet-translations/</trans
         <translation>masternodeprivkey inválida. Por favor reveja a documentação.</translation>
     </message>
     <message>
-        <source>(must be55500 for mainnet)</source>
-        <translation>(deve ser55500 para mainnet)</translation>
+        <source>(must be22365 for mainnet)</source>
+        <translation>(deve ser22365 para mainnet)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>

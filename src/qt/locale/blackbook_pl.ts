@@ -3757,8 +3757,8 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Peery z białej listy nie mogą zostać zbanowane a ich transakcje są zawsze retransmitowane, nawet jeśli już są w pamięci zbiorowej (mempool). Jest to przydatne np. dla bramek wyjściowych</translation>
     </message>
     <message>
-        <source>(55500 could be used only on mainnet)</source>
-        <translation>(55500 może być użyte tylko dla głównej sieci)</translation>
+        <source>(22365 could be used only on mainnet)</source>
+        <translation>(22365 może być użyte tylko dla głównej sieci)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4175,8 +4175,8 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Nieprawidłowy klucz prywatny masternoda. Przeczytaj dokumentację.</translation>
     </message>
     <message>
-        <source>(must be55500 for mainnet)</source>
-        <translation>(musi być55500 dla głównej sieci)</translation>
+        <source>(must be22365 for mainnet)</source>
+        <translation>(musi być22365 dla głównej sieci)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>
