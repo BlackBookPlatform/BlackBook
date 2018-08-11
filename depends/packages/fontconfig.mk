@@ -18,11 +18,11 @@ endef
 # Instead, change all uses of CHAR_WIDTH, and disable the rule that forces header re-generation.
 # This can be removed once the upstream build is fixed.
 define $(package)_build_cmds
+  sed -i 's/CHAR_WIDTH/CHARWIDTH/g' fontconfig/fontconfig.h src/fcobjshash.gperf src/fcobjs.h src/fcobjshash.h && \
+  sed -i 's/fcobjshash.h: fcobjshash.gperf/fcobjshash.h:/' src/Makefile && \
   $(MAKE)
 endef
 
 define $(package)_stage_cmds
-  sed -i 's/CHAR_WIDTH/CHARWIDTH/g' fontconfig/fontconfig.h src/fcobjshash.gperf src/fcobjs.h src/fcobjshash.h && \
-  sed -i 's/fcobjshash.h: fcobjshash.gperf/fcobjshash.h:/' src/Makefile && \
   $(MAKE) DESTDIR=$($(package)_staging_dir) install
 endef
