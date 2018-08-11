@@ -1,5 +1,5 @@
 ---
-name: "blackbook-win-2.3"
+name: "blackbook-win-1.0"
 enable_cache: true
 suites:
 - "bionic"
