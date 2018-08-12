@@ -619,6 +619,13 @@ background-color:#232C31;
 color:#FFFFFF;
 }
 
+/**************************** ADDRESS BOOK PAGE ***********************************/
+
+QWidget#AddressBookPage {
+background-color:#232C31;
+color:#FFFFFF;
+}
+
 /**************************** SEND AND RECEIVE DIALOG ***********************************/
 
 QWidget#AddressBookPage {
