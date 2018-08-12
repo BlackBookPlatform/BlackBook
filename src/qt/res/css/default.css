@@ -610,6 +610,13 @@ QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM:pressed {
 
 }
 
+/**************************** BLOCK EXPLORER ***********************************/
+
+QWidget#BlockExplorer {
+background-color:#232C31;
+color:#FFFFFF;
+}
+
 /**************************** SEND AND RECEIVE DIALOG ***********************************/
 
 QWidget#AddressBookPage {
