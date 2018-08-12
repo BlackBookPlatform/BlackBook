@@ -112,8 +112,8 @@ outline:0; /* Remove Annoying Focus Rectangle */
 }
 
 QGroupBox {
-background-color:#fcfcfc;
-color:#232C31;
+background-color:#232C31;
+color:#FFFFFF;
 }
 
 QToolTip {
@@ -321,8 +321,8 @@ border-right:0;
 }
 
 .QScrollArea {
-background:transparent;
-border:0;
+background-color:#232C31;
+color:#FFFFFF;
 }
 
 .QTableView { /* Table - has to be selected as a class otherwise it throws off QCalendarWidget */
@@ -619,17 +619,11 @@ background-color:#232C31;
 color:#FFFFFF;
 }
 
-/**************************** ADDRESS BOOK PAGE ***********************************/
+/**************************** SEND AND RECEIVE DIALOG ***********************************/
 
 QWidget#AddressBookPage {
 background-color:#232C31;
 color:#FFFFFF;
-}
-
-/**************************** SEND AND RECEIVE DIALOG ***********************************/
-
-QWidget#AddressBookPage {
-background-color:#F8F6F6;
 }
 
 QWidget#AddressBookPage QPushButton#newAddress { /* New Address Button */
