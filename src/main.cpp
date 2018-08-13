@@ -1620,31 +1620,31 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 int64_t GetBlockValue(int nHeight)
 {
-	if (nHeight == 0) return 4000000 * COIN;
+	if (nHeight == 0) return 2500000 * COIN;
 	
     int64_t nSubsidy = 0;
 	
-	if (nHeight > 0 && nHeight <= 50){
+	if (nHeight > 0 && nHeight <= 5){
         nSubsidy = 400 * COIN;
-    } else if (nHeight >= 51 && nHeight <= 100){
+    } else if (nHeight >= 6 && nHeight <= 10){
 		nSubsidy = 300 * COIN;
-	} else if (nHeight >= 101 && nHeight <= 150){
+	} else if (nHeight >= 11 && nHeight <= 15){
 		nSubsidy = 250 * COIN;
-	} else if (nHeight >= 151 && nHeight <= 200){
+	} else if (nHeight >= 16 && nHeight <= 20){
 		nSubsidy = 150 * COIN;
-	} else if (nHeight >= 201 && nHeight <= 250){
+	} else if (nHeight >= 21 && nHeight <= 25){
 		nSubsidy = 125 * COIN;
-	} else if (nHeight >= 251 && nHeight <= 300){
+	} else if (nHeight >= 26 && nHeight <= 30){
 		nSubsidy = 100 * COIN;
-	} else if (nHeight >= 301 && nHeight <= 350){
+	} else if (nHeight >= 31 && nHeight <= 35){
 		nSubsidy = 80 * COIN;
-	} else if (nHeight >= 351 && nHeight <= 400){
+	} else if (nHeight >= 36 && nHeight <= 40){
 		nSubsidy = 50 * COIN;
-	} else if (nHeight >= 401 && nHeight <= 450){
+	} else if (nHeight >= 41 && nHeight <= 45){
 		nSubsidy = 40 * COIN;
-	} else if (nHeight >= 451 && nHeight <= 500){
+	} else if (nHeight >= 46 && nHeight <= 50){
 		nSubsidy = 35 * COIN;
-	} else if (nHeight >= 501 && nHeight <= 550){
+	} else if (nHeight >= 51 && nHeight <= 55){
 		nSubsidy = 10 * COIN;
 	} else {
 		nSubsidy = 5 * COIN;
