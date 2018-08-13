@@ -74,7 +74,7 @@ background-color:#232C31;
 }
 
 QProgressBar {
-color: #AAAAAA;
+color: #FFFFFF;
 border:0px solid grey;
 border-radius:5px;
 background-color:transparent;
@@ -83,13 +83,13 @@ padding-right:0px;
 }
 
 QProgressBar::chunk {
-background-color:#5c4c7c;
+background-color:#3C4D54;
 width: 20px;
 }
 
 QLabel#progressBarLabel {
 background-color:transparent;
-color: #382f44;
+color: #FFFFFF;
 padding-left:5px;
 padding-right:5px;
 }
