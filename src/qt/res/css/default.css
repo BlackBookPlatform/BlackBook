@@ -79,8 +79,8 @@ color:#FFFFFF;
 }
 
 QProgressBar::chunk {
-color:#FFFFFF;
 background-color:#3C4D54;
+color:#232C31;
 width: 20px;
 }
 
@@ -1288,17 +1288,17 @@ padding-right:5px;
 
 QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#payToLabel { /* Pay To Header */
 background-color:#3C4D54;
-color:FFFFFF;
+color:#FFFFFF;
 }
 
 QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#labelLabel { /* Labor Header */
 background-color:#3C4D54;
-color:FFFFFF;
+color:#FFFFFF;
 }
 
 QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel { /* Amount Header */
 background-color:#3C4D54;
-color:FFFFFF;
+color:#FFFFFF;
 }
 
 QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payTo { /* Pay To Input Field */
