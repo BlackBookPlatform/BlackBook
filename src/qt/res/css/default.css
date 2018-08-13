@@ -74,11 +74,12 @@ background-color:#232C31;
 }
 
 QProgressBar {
-background-color:transparent;
+background-color:#232C31;
 color:#FFFFFF;
 }
 
 QProgressBar::chunk {
+color:#FFFFFF;
 background-color:#3C4D54;
 width: 20px;
 }
@@ -1144,18 +1145,6 @@ QDialog#SendCoinsDialog {
 background-color:#232C31;
 }
 
-QWidget .QFrame#SendCoins .QLabel#payToLabel { /* Pay To Header */
-color:FFFFFF;
-}
-
-QWidget .QFrame#SendCoins .QLabel#labelLabel { /* Labor Header */
-color:FFFFFF;
-}
-
-QWidget .QFrame#SendCoins .QLabel#amountLabel { /* Amount Header */
-color:FFFFFF;
-}
-
 QDialog#SendCoinsDialog .QFrame#frameCoinControl { /* Coin Control Section */
 }
 
@@ -1297,8 +1286,19 @@ margin-right:5px;
 padding-right:5px;
 }
 
-QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
+QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#payToLabel { /* Pay To Header */
 background-color:#3C4D54;
+color:FFFFFF;
+}
+
+QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#labelLabel { /* Labor Header */
+background-color:#3C4D54;
+color:FFFFFF;
+}
+
+QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel { /* Amount Header */
+background-color:#3C4D54;
+color:FFFFFF;
 }
 
 QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payTo { /* Pay To Input Field */
