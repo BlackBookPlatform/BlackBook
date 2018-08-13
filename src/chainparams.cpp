@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256("0x"))
+	(0, uint256("0x000006f466e0f808d39b1954f99f0ab4c34ec99195f09e2f7763f17228425991"))
 	;
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -129,12 +129,12 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1534172464;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 0;
+        genesis.nNonce = 569584;
 		
         hashGenesisBlock = genesis.GetHash();
 		
 		// If genesis block hash does not match, then generate new genesis hash.
-        if (true) {
+        if (false) {
             printf("Searching for genesis block...\n");
             // This will figure out a valid hash and Nonce if you're
             // creating a different genesis block:
@@ -158,10 +158,10 @@ public:
             printf("genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
         }
 		
-        assert(hashGenesisBlock == uint256("0x"));
-        assert(genesis.hashMerkleRoot == uint256("0x"));
+        assert(hashGenesisBlock == uint256("0x000006f466e0f808d39b1954f99f0ab4c34ec99195f09e2f7763f17228425991"));
+        assert(genesis.hashMerkleRoot == uint256("0xea6e3021f4c42c55687ce15f087b16e21136248079f46a188216fa54debca0c8"));
 
-        vSeeds.push_back(CDNSSeedData("107.170.229.162", "107.170.229.162"));	
+        vSeeds.push_back(CDNSSeedData("162.243.128.120", "162.243.128.120"));	
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
